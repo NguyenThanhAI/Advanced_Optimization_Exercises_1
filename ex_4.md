@@ -15,7 +15,7 @@ Ta có $\mathrm{dom}(f)=\mathbb{R}^{2}$ là một tập lồi.
 
 Ta xét:
 
-$$\nabla f(x) \begin{bmatrix} \dfrac{\partial f(x)}{\partial x_1} \\ \dfrac{\partial f(x)}{\partial x_2}\end{bmatrix} = \begin{bmatrix} -400x_1(x_2 - x_1^2) -2(1-x_1) \\ 200(x_2 - x_1^2) \end{bmatrix}$$
+$$\nabla f(x) = \begin{bmatrix} \dfrac{\partial f(x)}{\partial x_1} \\ \dfrac{\partial f(x)}{\partial x_2}\end{bmatrix} = \begin{bmatrix} -400x_1(x_2 - x_1^2) -2(1-x_1) \\ 200(x_2 - x_1^2) \end{bmatrix}$$
 
 $$\nabla^2 f(x)=\begin{bmatrix} \dfrac{\partial^2 f(x)}{\partial x_1^2} & \dfrac{\partial^2 f(x)}{\partial x_1\partial x_2} \\ \dfrac{\partial^2 f(x)}{\partial x_2 \partial x_1 } & \dfrac{\partial^2 f(x)}{\partial x_2^2 } \end{bmatrix} = \begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 & -400 x_1 \\ -400x_1 & 200 \end{bmatrix}$$
 
@@ -39,19 +39,20 @@ $$\Leftrightarrow \begin{cases} x_1=1 \\ x_2 = x_1^2=1 \end{cases}$$
 
 Ta xét:
 
-$$\nabla f(1, 1)=\begin{bmatrix} 802 & -400 \\ -400 & 200 \end{bmatrix}$$
+$$\nabla^2 f(1, 1)=\begin{bmatrix} 802 & -400 \\ -400 & 200 \end{bmatrix}$$
 
 $$\det(\lbrack 802 \rbrack)=802>0$$
 
 $$\det{\Big(\begin{bmatrix} 802 & -400 \\ -400 & 200 \end{bmatrix} \Big)}=802\times200 - (-400)\times(-400)=400>0$$
 
-$$\Rightarrow\nabla f(1, 1) \succ 0$$
+$$\Rightarrow\nabla^2 f(1, 1) \succ 0$$
 
 Vậy $x_1=x_2=1$ là một cực tiểu địa phương
+
+$f(1, 1)=0$ và $f(x_1, x_2) \geq 0=f(1,1) \thickspace \forall (x_1, x_2) \in \mathbb{R}^2$ nên $x_1=x_2=1$ là cực tiểu toàn cục.
 
 Ta có 
 $$\lim_{\substack{x_1 \rightarrow +\infty\\x_2 \rightarrow+\infty}}f(x)=\lim_{\substack{x_1 \rightarrow +\infty\\x_2 \rightarrow-\infty}}f(x)
 =\lim_{\substack{x_1 \rightarrow -\infty\\x_2 \rightarrow+\infty}}f(x)
 =\lim_{\substack{x_1 \rightarrow -\infty\\x_2 \rightarrow-\infty}}f(x)=+\infty$$
-
-Vậy $x_1=x_2=1$ cũng là một cực tiểu toàn cục.
+và $f(x)$ khả vi và liên tục $\forall (x_1, x_2) \in \mathbb{R}^2$. Vậy $x_1=x_2=1$ cũng là một cực tiểu toàn cục.

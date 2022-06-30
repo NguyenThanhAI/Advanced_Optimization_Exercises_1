@@ -56,7 +56,7 @@ và $\mathrm{dom}(\lVert Ax - b \rVert_2^2)=\mathbb{R}^n$ là tập lồi. Vậy
 
 Ta xét:
 
-$$\lVert \theta x + (1-\theta)y \rVert_1 \leq \theta \lVert x \rVert_1 + (1-\theta)\lVert y \rVert_1 \thickspace \forall \thickspace \theta \in \lbrack 0, 1 \rbrack, x, y \in \mathbb{R}$$
+$$\lVert \theta x + (1-\theta)y \rVert_1 \leq \theta \lVert x \rVert_1 + (1-\theta)\lVert y \rVert_1 \thickspace \forall \thickspace \theta \in \lbrack 0, 1 \rbrack, x, y \in \mathbb{R}^n$$
 
 theo bất đẳng thức tam giác và $\mathrm{dom}(\lVert x \rVert_1)=\mathbb{R}^n$ là tập lồi nên $\lVert x \rVert_1$ là hàm lồi. Tổng của hai hàm lồi là một hàm lồi nên $f(x)$ là một hàm lồi.
 
