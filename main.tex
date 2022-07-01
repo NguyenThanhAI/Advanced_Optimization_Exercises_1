@@ -137,7 +137,7 @@
         %	HEADING SECTIONS
         %----------------------------------------------------------------------------------------
         \textsc{\LARGE Đại học Quốc Gia Hà Nội}\\[0.5cm]
-        \textsc{\LARGE Đại học Khoa học tự nhiên}\\[0.5cm] % Name of your university/college
+        \textsc{\LARGE Trường đại học Khoa học tự nhiên}\\[0.5cm] % Name of your university/college
         \textsc{\LARGE Khoa Toán - Cơ - Tin học}\\[0.5cm]
 
         \includegraphics[scale=0.2]{HUS-logo.jpg}\\[0.5cm]
@@ -432,7 +432,7 @@
             Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(1,1)$, $\nabla f(x=1,y=1)=0$ và $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương nên $(x,y)=(1,1)$ là một cực tiểu địa phương ngặt.
             \item $\nabla^2 f(x=-1,y=-1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
             $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương.
-            Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(-1,-1)$, $\nabla f(x=-1,y=-1)=0$ và $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương nên Vậy $x=y=-1$ là một cực tiểu địa phương.
+            Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(-1,-1)$, $\nabla f(x=-1,y=-1)=0$ và $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương nên Vậy $x=y=-1$ là một cực tiểu địa phương ngặt.
         \end{itemize}
         Vậy ta có $(x,y)=(0,0)$ là một điểm cực đại địa phương và hai điểm $(x,y)=(1, 1)$ và $(x,y)=(-1,-1)$ là các điểm cực tiểu địa phương.
     \end{loigiai}
@@ -482,7 +482,10 @@
         Ta giải phương trình $\nabla \lVert Ax - b \rVert_2^2=0$:
 
         \begin{equation*}
-            \nabla \lVert Ax - b \rVert_2^2 = 2 A^T A x - 2 A^T b = 0
+            \begin{aligned}
+                &\nabla \lVert Ax - b \rVert_2^2 = 2 A^T A x - 2 A^T b = 0 \\
+                \Leftrightarrow &A^T A x=A^T b
+            \end{aligned}
         \end{equation*}
 
         Với $\mathrm{rank}(A)=n$, ta chứng minh $A^T A$ khả nghịch.
