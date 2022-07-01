@@ -341,7 +341,7 @@
             \end{aligned}
         \end{equation}
 
-        Ta sẽ xét ma trận Hessian $\nabla^2 f(x,y))$ tại các điểm dừng nghiệm của phương trình $\nabla f(x, y) = 0$:
+        Ta sẽ xét ma trận Hessian $\nabla^2 f(x,y)$ tại các điểm dừng nghiệm của phương trình $\nabla f(x, y) = 0$:
 
         \begin{itemize}
             \item $\nabla^2 f(x=0,y=0))=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$. Ta có $\det(\begin{bmatrix}2\end{bmatrix})=2>0, \det{\Big(\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=2\times6 - (-6)\times(-6)=-24<0$. $\nabla^2 f(x=0,y=0))$ là ma trận xác định âm. Vậy $(x,y)=(0,0)$ là một điểm cực đại địa phương.
@@ -429,7 +429,85 @@
     \end{baitap}
 
     \begin{loigiai}
+        Xét hàm số Rosenbrock
+        \begin{equation*}
+            f(x)=100(x_2 - x_1^2)^2 + (1-x_1)^2
+        \end{equation*}
+        \begin{enumerate} [wide, labelwidth=!, labelindent=0pt,label=\textbf{\arabic*}.]
+            \item $f$ có phải là hàm lồi không? Tại sao?
 
+            Ta có $\mathrm{dom}(f)=\mathbb{R}^{2}$ là một tập lồi. Ta tính Gradient của $f(x)$ theo $x_1, x_2$:
+
+            \begin{equation*}
+                \nabla f(x) = \begin{bmatrix} \dfrac{\partial f(x)}{\partial x_1} \\ \dfrac{\partial f(x)}{\partial x_2}\end{bmatrix} = \begin{bmatrix} -400x_1(x_2 - x_1^2) -2(1-x_1) \\ 200(x_2 - x_1^2) \end{bmatrix}
+            \end{equation*}
+
+            Ta tính ma trận Hessian của $f(x)$ theo $x_1, x_2$:
+
+            \begin{equation*}
+                \nabla^2 f(x)=\begin{bmatrix} \dfrac{\partial^2 f(x)}{\partial x_1^2} & \dfrac{\partial^2 f(x)}{\partial x_1\partial x_2} \\ \dfrac{\partial^2 f(x)}{\partial x_2 \partial x_1 } & \dfrac{\partial^2 f(x)}{\partial x_2^2 } \end{bmatrix} = \begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 & -400 x_1 \\ -400x_1 & 200 \end{bmatrix}
+            \end{equation*}
+
+            Ta xét:
+
+            \begin{equation*}
+                \det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})=-400 x_2 + 1200x_1^2 + 2
+            \end{equation*}
+
+            Dấu của định thức này phụ thuộc vào $x_1, x_2$.
+            \begin{itemize}
+                \item Nếu $x_2 > \dfrac{1200x_1^2 + 2}{400}$ thì định thức $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})<0$
+                \item Nếu $x_2 < \dfrac{1200x_1^2 + 2}{400}$ thì $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})>0$
+            \end{itemize}
+            Do định thức con chính đầu tiên lớn hơn 0 hay nhỏ hơn 0 phụ thuộc vào $x_1, x_2$ nên ta không cần xét thêm các định thức con chính tiếp theo. 
+            Ma trận Hessian $\nabla^2 f(x)$ là ma trận không xác định dấu.
+
+            $\nabla^2 f(x)$ là ma trận không xác định dấu nên $f(x)$ không là hàm lồi
+
+            \item Hãy tìm tất cả các điểm cực tiểu địa phương của $f$. Hàm $f$ có điểm cực tiểu toàn cục không? Nếu có hãy chỉ ra điểm đó là điểm nào?
+            
+            Để tìm các điểm dừng, ta giải phương trình $\nabla f(x)=0$:
+
+            \begin{equation*}
+                \nabla f(x) = \begin{bmatrix} \dfrac{\partial f(x)}{\partial x_1} \\ \dfrac{\partial f(x)}{\partial x_2}\end{bmatrix} = \begin{bmatrix} -400x_1(x_2 - x_1^2) -2(1-x_1) \\ 200(x_2 - x_1^2) \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+            \end{equation*}
+
+            \begin{equation*}
+                \begin{aligned}
+                    &\Leftrightarrow\begin{cases} -400x_1(x_2 - x_1^2) -2(1-x_1) = 0 \\ 200(x_2 - x_1^2) = 0 \end{cases} \\
+                    &\Leftrightarrow \begin{cases} -400x_1(x_2 - x_1^2) -2(1-x_1) = 0 \\ x_2 = x_1^2 \end{cases} \\
+                    &\Leftrightarrow \begin{cases} x_1=1 \\ x_2 = x_1^2=1 \end{cases} \\
+                    &\Leftrightarrow \begin{cases} x_1=1 \\ x_2=1 \end{cases}
+                \end{aligned}
+            \end{equation*}
+            Ta sẽ xét ma trận Hessian $\nabla^2 f(x)$ tại các điểm dừng nghiệm của phương trình $\nabla f(x) = 0$:
+
+            \begin{equation*}
+                \nabla^2 f(x_1=1, x_2=1)=\begin{bmatrix} 802 & -400 \\ -400 & 200 \end{bmatrix}
+            \end{equation*}
+
+            Ta xét:
+
+            \begin{equation*}
+                \begin{aligned}
+                    &\det(\lbrack 802 \rbrack)=802>0 \\
+                    &\det{\Big(\begin{bmatrix} 802 & -400 \\ -400 & 200 \end{bmatrix} \Big)}=802\times200 - (-400)\times(-400)=400>0 \\
+                    \Rightarrow&\nabla^2 f(x_1=1, x_2=1) \succ 0
+                \end{aligned}
+            \end{equation*}
+
+            Vậy $(x_1, x_2)=(1, 1)$ là một cực tiểu địa phương. Ta có $f(x_1=1, x_2=1)=0$. Mặt khác:
+
+            \begin{equation*}
+                \begin{aligned}
+                    &f(x)=100(x_2 - x_1^2)^2 + (1-x_1)^2 \geq 0 \thickspace \forall (x_1, x_2) \in \mathbb{R}^{2} \\
+                    \Rightarrow&f(x_1=1,x_2=1) \leq f(x_1, x_2) \thickspace \forall (x_1, x_2) \in \mathbb{R}^{2}
+                \end{aligned}
+            \end{equation*}
+            Vì vậy $(x_1, x_2)=(1, 1)$ cũng là một cực tiểu toàn cục của hàm $f(x)$.
+
+            Kết luận: Hàm $f(x)$ chỉ có một cực tiểu địa phương $(x_1, x_2)=(1,1)$ và cũng chính là cực tiểu toàn cục của hàm $f$.
+        \end{enumerate}
     \end{loigiai}
 
     \newpage
