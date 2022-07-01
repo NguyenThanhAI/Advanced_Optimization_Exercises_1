@@ -98,6 +98,8 @@
 %\numberwithin{dn}{section}
 %\numberwithin{hq}{section}
 
+\setlength{\parindent}{0cm}
+
 \newtheoremstyle{sltheorem}
 {}                % Space above
 {}                % Space below
@@ -109,9 +111,19 @@
 {}                % Theorem head spec
 \theoremstyle{sltheorem}
 \newtheorem{baitap}{Bài tập}
+\newtheoremstyle{soltheorem}
+{}                % Space above
+{}                % Space below
+{\normalfont}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{\newline}               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{soltheorem}
 \newtheorem*{loigiai}{Lời giải}
 
-\doublespacing
+\onehalfspacing
 
 \begin{document}
 
@@ -131,14 +143,155 @@
             \end{equation*}
             \item Logistic Regression
             \begin{equation*}
-                f(w)=\dfrac{1}{n}\sum_{i=1}^n \Big( y_i x_i^T w + \ln(1 + e^{x_i^T w}) \Big)
+                f(w)=\dfrac{1}{n}\sum_{i=1}^n \Big( -y_i x_i^T w + \ln(1 + e^{x_i^T w}) \Big)
             \end{equation*}
-            với $(x_i, y_i) \in \mathbb{R}^{k+1},i=1,2,\dots,n$ là cặp dữ liệu đầu vào và nhãn tương ứng và $w \in \mathbb{R}^k$
+            với $(x_i, y_i) \in \mathbb{R}^{k+1},i=1,2,\dots,n$, là cặp dữ liệu đầu vào và nhãn tương ứng và $w \in \mathbb{R}^k$
         \end{enumerate}
     \end{baitap}
 
     \begin{loigiai}
+
+        Hãy chứng minh các hàm sau là hàm lồi
+        \begin{enumerate} [wide, labelwidth=!, labelindent=0pt,label=\textbf{\arabic*}.]
+            \item Ridge Regression
+            \begin{equation*}
+                f(x)=\lVert Ax - b \rVert_2^2 + \lambda \lVert x \rVert_2^2
+            \end{equation*}
+
+            Ta đặt $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, x \in \mathbb{R}^{n}$, ta có $\mathrm{dom}(f)=\mathbb{R}^{n}$ là tập lồi
+
+            \begin{equation*}
+                \begin{aligned}
+                    f(x) &= (Ax - b)^T (Ax - b) + \lambda x^T x \\
+                    &=x^T A^T A x - x^TA^Tb - b^T Ax + b^T b + \lambda x^T x
+                \end{aligned}
+            \end{equation*}
+            Do $x^TA^Tb$ và $b^TAx$ là hai số vô hướng và $(x^TA^Tb)^T=b^TAx$ nên $x^TA^Tb=b^TAx$ (chuyển vị của một số vô hướng bằng chính nó) nên:
+
+            \begin{equation*}
+                \begin{aligned}
+                    f(x) &= x^T A^T A x - x^TA^Tb - b^T Ax + b^T b + \lambda x^T x\\
+                    &=x^T A^T A x-2x^TA^Tb+b^Tb + \lambda x^T x
+                \end{aligned}
+            \end{equation*}
+            Ta tính Gradient của $f(x)$ theo $x$:
+
+            \begin{equation*}
+                \nabla f(x) =\Big\lbrack A^TA + (A^TA)^T \Big\rbrack x - 2A^Tb + 2\lambda x = 2A^T A x - 2 A^T b + 2\lambda x
+            \end{equation*}
+
+            Ta tính ma trận Hessian của $f(x)$ theo $x$:
+
+            \begin{equation*}
+                \nabla^2 f(x) = 2A^T A + 2 \lambda I
+            \end{equation*}
+
+            Ta xét:
+
+            \begin{equation*}
+                p^T \nabla^2 f(x) p = 2 p^T A^T A p + 2\lambda p^Tp = 2 (Ap)^TAp + 2\lambda p^Tp \geq 0 \thickspace\forall \thickspace p \in \mathbb{R}^{n}
+            \end{equation*}
+
+            nên:
+
+            \begin{equation*}
+                \nabla^2 f(x) \succeq 0
+            \end{equation*}
+
+            Vì $\mathrm{dom}(f)$ là tập lồi và $\nabla^2 f(x) \succeq 0$ nên hàm $f(x)$ là một hàm lồi.
+
+            \item Lasso Regression
+            \begin{equation*}
+                f(x)=\lVert Ax - b \rVert_2^2 + \lambda \lVert x \rVert_1
+            \end{equation*}
+
+            Ta đặt $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, x \in \mathbb{R}^{n}$, ta có $\mathrm{dom}(f)=\mathbb{R}^{n}$ là tập lồi,
+            $\mathrm{dom}(\lVert Ax - b \rVert_2^2)=\mathbb{R}^n$ và $\mathrm{dom}(\lVert x \rVert_1)=\mathbb{R}^n$
+
+            Ta chứng minh $\lVert Ax - b \rVert_2^2$ là hàm lồi:
+
+            \begin{equation*}
+                \begin{aligned}
+                    \lVert Ax - b \rVert_2^2&=(Ax-b)^T(Ax-b)\\
+                    &=x^TA^TAx - x^TA^Tb - b^TAx + b^Tb
+                \end{aligned}
+            \end{equation*}
+            Do $x^TA^Tb$ và $b^TAx$ là hai số vô hướng và $(x^TA^Tb)^T=b^TAx$ nên $x^TA^Tb=b^TAx$ (chuyển vị của một số vô hướng bằng chính nó) nên:
+
+            \begin{equation*}
+                \lVert Ax - b \rVert_2^2=x^TA^TAx - 2x^TA^Tb + b^Tb
+            \end{equation*}
+
+            Ta tính Gradient của $\lVert Ax - b \rVert_2^2$ theo $x$:
+
+            \begin{equation*}
+                \nabla \lVert Ax - b \rVert_2^2=\Big \lbrack A^TA + (A^TA)^T \Big \rbrack x-2A^Tb=2A^TAx - 2A^Tb
+            \end{equation*}
+
+            Ta tính ma trận Hessian của $\lVert Ax - b \rVert_2^2$ theo $x$:
+            \begin{equation*}
+                \nabla^2 \lVert Ax - b \rVert_2^2=2A^TA
+            \end{equation*}
+
+            Ta xét:
+
+            \begin{equation*}
+                2p^TA^TAp=2(Ap)^TAp\geq0 \thickspace \forall p \in \mathbb{R}^{n} \Rightarrow 2A^TA \succeq 0
+            \end{equation*}
+
+            Mặt khác, $\mathrm{dom}(\lVert Ax - b \rVert_2^2)=\mathbb{R}^n$ là tập lồi. Vậy nên $\lVert Ax - b \rVert_2^2$ là hàm lồi
+
+            Ta chứng minh $\lVert x \rVert_1$ là hàm lồi, với $\theta \in \lbrack 0, 1\rbrack, x,y \in \mathbb{R}^n$:
+
+            \begin{equation*}
+                \begin{aligned}
+                    \lVert \theta x + (1-\theta)y \rVert_1 \leq \theta \lVert x \rVert_1 + (1-\theta)\lVert y \rVert_1 \thickspace \forall \thickspace \theta \in \lbrack 0, 1 \rbrack, x, y \in \mathbb{R}^n
+                \end{aligned}
+            \end{equation*}
+
+            theo bất đẳng thức tam giác và $\mathrm{dom}(\lVert x \rVert_1)=\mathbb{R}^n$ là tập lồi nên $\lVert x \rVert_1$ là hàm lồi. 
+            $\mathrm{dom}(f)$ là một tập lồi và tổng của hai hàm lồi là một hàm lồi nên $f(x)$ là một hàm lồi.
+
+            \item Logistic Regression
+            \begin{equation*}
+                f(w)=\dfrac{1}{n}\sum_{i=1}^n \Big( -y_i x_i^T w + \ln(1 + e^{x_i^T w}) \Big)
+            \end{equation*}
+            với $(x_i, y_i) \in \mathbb{R}^{k+1},i=1,2,\dots,n$ là cặp dữ liệu đầu vào và nhãn tương ứng và $w \in \mathbb{R}^k$
+
+            Ta có $\mathrm{dom}(f(w))=\mathbb{R}^{k}$, là một tập lồi. Ta tính Gradient của $f(w)$ theo $w$:
+
+            \begin{equation*}
+                \nabla f(w)=\dfrac{1}{n}\sum_{i=1}^n \Big( -y_i x_i + \dfrac{e^{x_i^Tw}}{1 + e^{x_i^T w}}x_i \Big)
+            \end{equation*}
+
+            Ta tính ma trận Hessian của $f(w)$ theo $w$:
+
+            \begin{equation*}
+                \nabla^2 f(x) = \dfrac{1}{n}\sum_{i=1}^n \dfrac{e^{x_i^Tw}(1 + e^{x_i^T w})-e^{2x_i^T w}}{(1 + e^{x_i^T w})^2}x_i x_i^T=\dfrac{1}{n}\sum_{i=1}^n \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}x_i x_i^T
+            \end{equation*}
+
+            Ta xét số hạng thứ $i$:
+
+            \begin{equation*}
+                \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}x_i x_i^T
+            \end{equation*}
+
+            Ta xét ma trận Hessian $\nabla^2 f(x)$:
+
+            \begin{equation*}
+                \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T p=\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k}
+            \end{equation*}
+            \begin{equation*}
+                \begin{aligned}
+                    \Rightarrow p^T \nabla^2 f(x)p&=\dfrac{1}{n}\sum_{i=1}^n \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T\\
+                    &=\dfrac{1}{n}\sum_{i=1}^n \Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k}
+                \end{aligned}
+            \end{equation*}
+
+            Ta có $\mathrm{dom}(f(w))=\mathbb{R}^{k}$ là một tập lồi và $\nabla^2 f(x) \succeq 0$ nên $f(w)$ là hàm lồi
+        \end{enumerate}
         
+
     \end{loigiai}
 
     \begin{baitap}
@@ -146,6 +299,56 @@
     \end{baitap}
 
     \begin{loigiai}
+        Ta có $\mathrm{dom}(f)=\mathbb{R}^2$ là một tập lồi. Ta tính Gradient của $f(x, y)$ theo $x$ và $y$:
+
+        \begin{equation*}
+            \nabla f(x, y) = \begin{bmatrix} \dfrac{\partial f(x, y)}{\partial x} \\ \dfrac{\partial f(x, y)}{\partial y}\end{bmatrix} = \begin{bmatrix} 4x^3 + 2x - 6y \\ -6x + 6y \end{bmatrix}
+        \end{equation*}
+        Ta tính ma trận Hessian của $f(x, y)$ theo $x$ và $y$:
+
+        \begin{equation*}
+            \nabla^2 f(x,y)=\begin{bmatrix} \dfrac{\partial^2 f(x, y)}{\partial x^2} & \dfrac{\partial^2 f(x, y)}{\partial x\partial y} \\ \dfrac{\partial^2 f(x, y)}{\partial y \partial x } & \dfrac{\partial^2 f(x, y)}{\partial y^2 } \end{bmatrix}=\begin{bmatrix} 12x^2 + 2 & -6 \\ -6 & 6 \end{bmatrix}
+        \end{equation*}
+
+        Ta xét:
+
+        \begin{equation*}
+            \det(\begin{bmatrix} 12x^2 + 2  \end{bmatrix})>0 \thickspace \forall (x, y) \in \mathbb{R}^2
+        \end{equation*}
+
+        \begin{equation*}
+            \det(\nabla^2 f(x,y))=\det\Bigg(\begin{bmatrix} 12x^2 + 2 & -6 \\ -6 & 6 \end{bmatrix} \Bigg)=6(12x^2 + 2) - 36 =72x^2 - 24
+        \end{equation*}
+
+        \begin{itemize}
+            \item $\det\Big(\nabla^2 f(x,y)\Big) < 0$ với $x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$, $\nabla^2 f(x,y))$ là ma trận xác định âm.
+            \item $\det\Big(\nabla^2 f(x,y)\Big) > 0$ với $x \in \Big(-\infty;-\dfrac{1}{\sqrt{3}}\Big) \cup \Big(\dfrac{1}{\sqrt{3}}; +\infty\Big)$, $\nabla^2 f(x,y))$ là ma trận xác định dương.
+        \end{itemize}
+
+        Như vậy $\nabla^2 f(x,y))$ là ma trận không xác định dấu do $\nabla^2 f(x,y)) \succ 0$ hoặc $\nabla^2 f(x,y)) \prec 0$ phụ thuộc vào giá trị $x$.
+        
+        Để tìm các điểm dừng, ta giải phương trình $\nabla f(x, y) = 0$
+
+        \begin{equation*}
+            \nabla f(x, y) = \begin{bmatrix} 4x^3 + 2x - 6y \\ -6x + 6y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+        \end{equation*}
+
+        \begin{equation}
+            \begin{aligned}
+            &\Leftrightarrow \begin{cases} 4x^3 + 2x - 6y = 0 \\ x = y \end{cases} \\
+            &\Leftrightarrow \begin{cases} 4x(x^2-1) = 0 \\ x = y \end{cases} \\
+            &\Leftrightarrow \left [\begin{array}{l} x=y=0 \\ x=y=1 \\ x=y=-1 \end{array}\right.
+            \end{aligned}
+        \end{equation}
+
+        Ta sẽ xét ma trận Hessian $\nabla^2 f(x,y))$ tại các điểm dừng nghiệm của phương trình $\nabla f(x, y) = 0$:
+
+        \begin{itemize}
+            \item $\nabla^2 f(x=0,y=0))=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$. Ta có $\det(\begin{bmatrix}2\end{bmatrix})=2>0, \det{\Big(\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=2\times6 - (-6)\times(-6)=-24<0$. $\nabla^2 f(x=0,y=0))$ là ma trận xác định âm. Vậy $(x,y)=(0,0)$ là một điểm cực đại địa phương.
+            \item $\nabla^2 f(x=1,y=1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$. $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương. Vậy $(x,y)=(1,1)$ là một cực tiểu địa phương.
+            \item $\nabla^2 f(x=-1,y=-1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$. $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương. Vậy $x=y=-1$ là một cực tiểu địa phương.
+        \end{itemize}
+        Vậy ta có $(x,y)=(0,0)$ là một điểm cực đại địa phương và hai điểm $(x,y)=(1, 1)$ và $(x,y)=(-1,-1)$ là các điểm cực tiểu địa phương.
     \end{loigiai}
 
     \begin{baitap}
@@ -156,6 +359,62 @@
     \end{baitap}
 
     \begin{loigiai}
+        Ta có $\mathrm{dom}\Big( \lVert Ax-b \rVert_2^2\Big)=\mathbb{R}^{n}$ là một tập lồi. Ta sẽ chứng minh
+        $\lVert Ax - b \rVert_2^2$ là hàm lồi. Ta xét:
+
+        \begin{equation*}
+            \begin{aligned}
+            \lVert Ax - b \rVert_2^2&=(Ax-b)^T(Ax-b)\\
+            &=x^TA^TAx - x^TA^Tb - b^TAx + b^Tb
+            \end{aligned}
+        \end{equation*}
+
+        Do $x^TA^Tb$ và $b^TAx$ là hai số vô hướng và $(x^TA^Tb)^T=b^TAx$ nên $x^TA^Tb=b^TAx$ (chuyển vị của một số vô hướng bằng chính nó) nên:
+        \begin{equation*}
+            \lVert Ax - b \rVert_2^2=x^TA^TAx - 2x^TA^Tb + b^Tb
+        \end{equation*}
+        Ta tính Gradient của $\lVert Ax - b \rVert_2^2$ theo $x$:
+
+        \begin{equation*}
+            \nabla \lVert Ax - b \rVert_2^2=\Big\lbrack A^TA + (A^TA)^T \Big\rbrack x-2A^Tb=2A^TAx - 2A^Tb
+        \end{equation*}
+
+        Ta tính ma trận Hessian của $\lVert Ax - b \rVert_2^2$ theo $x$:
+
+        \begin{equation*}
+            \nabla^2 \lVert Ax - b \rVert_2^2=2A^TA
+        \end{equation*}
+
+        Ta xét:
+
+        \begin{equation*}
+            2p^TA^TAp=2(Ap)^TAp\geq0 \thickspace \forall p \in \mathbb{R}^{n} \Rightarrow 2A^TA \succeq 0 \Rightarrow \nabla^2 \lVert Ax - b \rVert_2^2 \succeq 0
+        \end{equation*}
+
+        Ta có $\mathrm{dom}\Big( \lVert Ax-b \rVert_2^2\Big)=\mathbb{R}^{n}$ là một tập lồi và $\nabla^2 \lVert Ax - b \rVert_2^2 \succeq 0$. Vì vậy $\lVert Ax - b \rVert_2^2$ là hàm lồi, điểm dừng của phương trình $\nabla \lVert Ax - b \rVert_2^2=0$ là cực tiểu toàn cục của bài toán.
+
+        Ta giải phương trình $\nabla \lVert Ax - b \rVert_2^2=0$:
+
+        \begin{equation*}
+            \nabla \lVert Ax - b \rVert_2^2 = 2 A^T A x - 2 A^T b = 0
+        \end{equation*}
+
+        Với $\mathrm{rank}(A)=n$, ta chứng minh $A^T A$ khả nghịch.
+
+        Ta xét hệ phương trình:
+
+        \begin{equation*}
+            A^T A x = 0 \Rightarrow x^T A^T A x = 0 \Leftrightarrow (Ax)^T (Ax) = 0 \Leftrightarrow \lVert Ax \rVert_2^2 =0 \Leftrightarrow Ax = 0
+        \end{equation*}
+
+        Do $\mathrm{rank}(A)=n$ nên các cột của $A$ độc lập tuyến tính vậy để $Ax=0 \Leftrightarrow x = 0$
+        Vậy $A^T A x = 0 \Leftrightarrow x = 0$, nên các cột của $A^T A$ độc lập tuyến tính, ta suy ra $A^T A$ khả nghịch.
+
+        Vậy ta có nghiệm tối ưu toàn cục của bài toán là nghiệm của phương trình $\nabla \lVert Ax - b \rVert_2^2=0$:
+
+        \begin{equation*}
+            x^* = \underset{x}{\mathrm{argmin}}\lVert Ax - b \rVert_2^2=(A^TA)^{-1}A^T b
+        \end{equation*}
     \end{loigiai}
 
     \begin{baitap}
