@@ -258,7 +258,7 @@
             \end{equation*}
             với $(x_i, y_i) \in \mathbb{R}^{k+1},i=1,2,\dots,n$ là cặp dữ liệu đầu vào và nhãn tương ứng và $w \in \mathbb{R}^k$
 
-            Ta có $\mathrm{dom}(f(w))=\mathbb{R}^{k}$, là một tập lồi. Ta tính Gradient của $f(w)$ theo $w$:
+            Ta có $\mathrm{dom}(f(w)=\mathbb{R}^{k}$, là một tập lồi. Ta tính Gradient của $f(w)$ theo $w$:
 
             \begin{equation*}
                 \nabla f(w)=\dfrac{1}{n}\sum_{i=1}^n \Big( -y_i x_i + \dfrac{e^{x_i^Tw}}{1 + e^{x_i^T w}}x_i \Big)
@@ -310,6 +310,8 @@
             \nabla^2 f(x,y)=\begin{bmatrix} \dfrac{\partial^2 f(x, y)}{\partial x^2} & \dfrac{\partial^2 f(x, y)}{\partial x\partial y} \\ \dfrac{\partial^2 f(x, y)}{\partial y \partial x } & \dfrac{\partial^2 f(x, y)}{\partial y^2 } \end{bmatrix}=\begin{bmatrix} 12x^2 + 2 & -6 \\ -6 & 6 \end{bmatrix}
         \end{equation*}
 
+        Ta nhận thấy $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^{2}$
+
         Ta xét:
 
         \begin{equation*}
@@ -321,11 +323,11 @@
         \end{equation*}
 
         \begin{itemize}
-            \item $\det\Big(\nabla^2 f(x,y)\Big) < 0$ với $x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$, $\nabla^2 f(x,y))$ là ma trận xác định âm.
-            \item $\det\Big(\nabla^2 f(x,y)\Big) > 0$ với $x \in \Big(-\infty;-\dfrac{1}{\sqrt{3}}\Big) \cup \Big(\dfrac{1}{\sqrt{3}}; +\infty\Big)$, $\nabla^2 f(x,y))$ là ma trận xác định dương.
+            \item $\det\Big(\nabla^2 f(x,y)\Big) < 0$ với $x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$, $\nabla^2 f(x,y)$ là ma trận xác định âm.
+            \item $\det\Big(\nabla^2 f(x,y)\Big) > 0$ với $x \in \Big(-\infty;-\dfrac{1}{\sqrt{3}}\Big) \cup \Big(\dfrac{1}{\sqrt{3}}; +\infty\Big)$, $\nabla^2 f(x,y)$ là ma trận xác định dương.
         \end{itemize}
 
-        Như vậy $\nabla^2 f(x,y))$ là ma trận không xác định dấu do $\nabla^2 f(x,y)) \succ 0$ hoặc $\nabla^2 f(x,y)) \prec 0$ phụ thuộc vào giá trị $x$.
+        Như vậy $\nabla^2 f(x,y)$ là ma trận không xác định dấu do $\nabla^2 f(x,y) \succ 0$ hoặc $\nabla^2 f(x,y) \prec 0$ phụ thuộc vào giá trị $x$.
         
         Để tìm các điểm dừng, ta giải phương trình $\nabla f(x, y) = 0$
 
@@ -344,9 +346,14 @@
         Ta sẽ xét ma trận Hessian $\nabla^2 f(x,y)$ tại các điểm dừng nghiệm của phương trình $\nabla f(x, y) = 0$:
 
         \begin{itemize}
-            \item $\nabla^2 f(x=0,y=0))=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$. Ta có $\det(\begin{bmatrix}2\end{bmatrix})=2>0, \det{\Big(\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=2\times6 - (-6)\times(-6)=-24<0$. $\nabla^2 f(x=0,y=0))$ là ma trận xác định âm. Vậy $(x,y)=(0,0)$ là một điểm cực đại địa phương.
-            \item $\nabla^2 f(x=1,y=1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$. $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương. Vậy $(x,y)=(1,1)$ là một cực tiểu địa phương.
-            \item $\nabla^2 f(x=-1,y=-1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$. $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương. Vậy $x=y=-1$ là một cực tiểu địa phương.
+            \item $\nabla^2 f(x=0,y=0)=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$. Ta có $\det(\begin{bmatrix}2\end{bmatrix})=2>0, \det{\Big(\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=2\times6 - (-6)\times(-6)=-24<0$. $\nabla^2 f(x=0,y=0)$ là ma trận xác định âm. 
+            Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(0,0)$, $\nabla f(x=0,y=0)=0$ và $\nabla^2 f(x=0, y=0)$ là ma trận xác định âm nên $(x,y)=(0,0)$ là một điểm cực đại địa phương ngặt.
+            \item $\nabla^2 f(x=1,y=1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
+            $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương.
+            Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(1,1)$, $\nabla f(x=1,y=1)=0$ và $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương nên $(x,y)=(1,1)$ là một cực tiểu địa phương ngặt.
+            \item $\nabla^2 f(x=-1,y=-1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
+            $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương.
+            Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(-1,-1)$, $\nabla f(x=-1,y=-1)=0$ và $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương nên Vậy $x=y=-1$ là một cực tiểu địa phương.
         \end{itemize}
         Vậy ta có $(x,y)=(0,0)$ là một điểm cực đại địa phương và hai điểm $(x,y)=(1, 1)$ và $(x,y)=(-1,-1)$ là các điểm cực tiểu địa phương.
     \end{loigiai}
@@ -373,7 +380,7 @@
         \begin{equation*}
             \lVert Ax - b \rVert_2^2=x^TA^TAx - 2x^TA^Tb + b^Tb
         \end{equation*}
-        Ta tính Gradient của $\lVert Ax - b \rVert_2^2$ theo $x$:
+        Ta nhận thấy $\lVert Ax - b \rVert_2^2$ là hàm khả vi tại mọi điểm $x \in \mathbb{R}^n$. Ta tính Gradient của $\lVert Ax - b \rVert_2^2$ theo $x$:
 
         \begin{equation*}
             \nabla \lVert Ax - b \rVert_2^2=\Big\lbrack A^TA + (A^TA)^T \Big\rbrack x-2A^Tb=2A^TAx - 2A^Tb
@@ -391,7 +398,7 @@
             2p^TA^TAp=2(Ap)^TAp\geq0 \thickspace \forall p \in \mathbb{R}^{n} \Rightarrow 2A^TA \succeq 0 \Rightarrow \nabla^2 \lVert Ax - b \rVert_2^2 \succeq 0
         \end{equation*}
 
-        Ta có $\mathrm{dom}\Big( \lVert Ax-b \rVert_2^2\Big)=\mathbb{R}^{n}$ là một tập lồi và $\nabla^2 \lVert Ax - b \rVert_2^2 \succeq 0$. Vì vậy $\lVert Ax - b \rVert_2^2$ là hàm lồi, điểm dừng của phương trình $\nabla \lVert Ax - b \rVert_2^2=0$ là cực tiểu toàn cục của bài toán.
+        Ta có $\mathrm{dom}\Big( \lVert Ax-b \rVert_2^2\Big)=\mathbb{R}^{n}$ là một tập lồi và $\nabla^2 \lVert Ax - b \rVert_2^2 \succeq 0$. Vì vậy $\lVert Ax - b \rVert_2^2$ là hàm lồi. Mặt khác, $\lVert Ax - b \rVert_2^2$ khả vi tại mọi điểm $x \in \mathbb{R}^{n}$ nên mọi điểm dừng của hàm $\lVert Ax - b \rVert_2^2$ là cực tiểu toàn cục.
 
         Ta giải phương trình $\nabla \lVert Ax - b \rVert_2^2=0$:
 
@@ -448,6 +455,8 @@
                 \nabla^2 f(x)=\begin{bmatrix} \dfrac{\partial^2 f(x)}{\partial x_1^2} & \dfrac{\partial^2 f(x)}{\partial x_1\partial x_2} \\ \dfrac{\partial^2 f(x)}{\partial x_2 \partial x_1 } & \dfrac{\partial^2 f(x)}{\partial x_2^2 } \end{bmatrix} = \begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 & -400 x_1 \\ -400x_1 & 200 \end{bmatrix}
             \end{equation*}
 
+            Ta nhận thấy $\nabla^2 f(x)$ tồn tại và liên tục với mọi $(x_1, x_2) \in \mathbb{R}^{2}$
+
             Ta xét:
 
             \begin{equation*}
@@ -496,11 +505,11 @@
                 \end{aligned}
             \end{equation*}
 
-            Vậy $(x_1, x_2)=(1, 1)$ là một cực tiểu địa phương. Ta có $f(x_1=1, x_2=1)=0$. Mặt khác:
+            Vì $\nabla^2 f(x)$ tồn tại và liên tục với mọi $(x_1, x_2) \in \mathbb{R}^{2}$ nên $\nabla^2 f(x, y)$ cũng tồn tại và liên tục trong một lân cận mở của $(x_1, x_2)=(1,1)$, $\nabla f(x_1=1, x_2=1)=0$ và $\nabla^2 f(x_1=1, x_2=1)$ là ma trận xác định dương nên $(x_1, x_2)=(1, 1)$ là một cực tiểu địa phương ngặt. Ta có $f(x_1=1, x_2=1)=0$. Mặt khác:
 
             \begin{equation*}
                 \begin{aligned}
-                    &f(x)=100(x_2 - x_1^2)^2 + (1-x_1)^2 \geq 0 \thickspace \forall (x_1, x_2) \in \mathbb{R}^{2} \\
+                    &f(x)=100(x_2 - x_1^2)^2 + (1-x_1)^2 \geq 0 = f(x_1=0,x_2=0) \thickspace \forall (x_1, x_2) \in \mathbb{R}^{2} \\
                     \Rightarrow&f(x_1=1,x_2=1) \leq f(x_1, x_2) \thickspace \forall (x_1, x_2) \in \mathbb{R}^{2}
                 \end{aligned}
             \end{equation*}
