@@ -100,6 +100,7 @@
 
 \setlength{\parindent}{0cm}
 
+\newtheorem{dl}{Định lý}
 \newtheoremstyle{sltheorem}
 {}                % Space above
 {}                % Space below
@@ -237,7 +238,7 @@
                 f(x)=\lVert Ax - b \rVert_2^2 + \lambda \lVert x \rVert_2^2
             \end{equation*}
 
-            Ta đặt $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, x \in \mathbb{R}^{n}$, ta có $\mathrm{dom}(f)=\mathbb{R}^{n}$ là tập lồi
+            Ta đặt kích thước các ma trận $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, x \in \mathbb{R}^{n}$, ta có $\mathrm{dom}(f)=\mathbb{R}^{n}$ là tập lồi
 
             \begin{equation*}
                 \begin{aligned}
@@ -274,7 +275,7 @@
             nên:
 
             \begin{equation*}
-                \nabla^2 f(x) \succeq 0
+                \nabla^2 f(x) \succeq 0 \thickspace \forall x \in \mathbb{R}^{n}
             \end{equation*}
 
             Vì $\mathrm{dom}(f)$ là tập lồi và $\nabla^2 f(x) \succeq 0$ nên hàm $f(x)$ là một hàm lồi.
@@ -284,7 +285,7 @@
                 f(x)=\lVert Ax - b \rVert_2^2 + \lambda \lVert x \rVert_1
             \end{equation*}
 
-            Ta đặt $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, x \in \mathbb{R}^{n}$, ta có $\mathrm{dom}(f)=\mathbb{R}^{n}$ là tập lồi,
+            Ta đặt kích thước các ma trận $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, x \in \mathbb{R}^{n}$, ta có $\mathrm{dom}(f)=\mathbb{R}^{n}$ là tập lồi,
             $\mathrm{dom}(\lVert Ax - b \rVert_2^2)=\mathbb{R}^n$ và $\mathrm{dom}(\lVert x \rVert_1)=\mathbb{R}^n$
 
             Ta chứng minh $\lVert Ax - b \rVert_2^2$ là hàm lồi:
@@ -315,7 +316,7 @@
             Ta xét:
 
             \begin{equation*}
-                2p^TA^TAp=2(Ap)^TAp\geq0 \thickspace \forall p \in \mathbb{R}^{n} \Rightarrow 2A^TA \succeq 0
+                2p^TA^TAp=2(Ap)^TAp\geq0 \thickspace \forall p \in \mathbb{R}^{n} \Rightarrow 2A^TA \succeq 0 \thickspace \forall x \in \mathbb{R}^{n}
             \end{equation*}
 
             Mặt khác, $\mathrm{dom}(\lVert Ax - b \rVert_2^2)=\mathbb{R}^n$ là tập lồi. Vậy nên $\lVert Ax - b \rVert_2^2$ là hàm lồi
@@ -329,7 +330,7 @@
             \end{equation*}
 
             theo bất đẳng thức tam giác và $\mathrm{dom}(\lVert x \rVert_1)=\mathbb{R}^n$ là tập lồi nên $\lVert x \rVert_1$ là hàm lồi. 
-            $\mathrm{dom}(f)$ là một tập lồi và tổng của hai hàm lồi là một hàm lồi nên $f(x)$ là một hàm lồi.
+            $\mathrm{dom}(f)$ là một tập lồi và tổng $\lVert Ax - b \rVert_2^2 + \lambda \lVert x \rVert_1 \thickspace (\lambda \geq 0)$ có các thành phần $\lVert Ax - b \rVert_2^2$ và $\lVert x \rVert_1$ lồi nên $f(x)$ là một hàm lồi.
 
             \item Logistic Regression
             \begin{equation*}
@@ -358,12 +359,12 @@
             Ta xét ma trận Hessian $\nabla^2 f(x)$:
 
             \begin{equation*}
-                \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T p=\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k}
+                \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T p=\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k} \thickspace \forall x \in \mathbb{R}^{k}
             \end{equation*}
             \begin{equation*}
                 \begin{aligned}
                     \Rightarrow p^T \nabla^2 f(x)p&=\dfrac{1}{n}\sum_{i=1}^n \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T\\
-                    &=\dfrac{1}{n}\sum_{i=1}^n \Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k}
+                    &=\dfrac{1}{n}\sum_{i=1}^n \Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k} \thickspace \forall x \in \mathbb{R}^{k}
                 \end{aligned}
             \end{equation*}
 
@@ -391,22 +392,69 @@
 
         Ta nhận thấy $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^{2}$
 
-        Ta xét:
+        Để xét dấu của ma trận Hessian $\nabla^2 f(x, y)$, ta sẽ sử dụng một vài định lý và tiêu chuẩn.
 
+        \begin{dl}[Tiêu chuẩn Sylvester] \label{dl:Sylvester}
+            Cho ma trận $A \in \mathbb{R}^{n \times n}$ đối xứng, 
+            đặt $A_k$ là ma trận thu được bằng cách lấy một ma trận con kích thước $k\times k$ góc trên bên trái của ma trận $A$. 
+            Hơn nữa, ta đặt $\Delta_k=\det(A_k)$ là định thức con chính cấp $k$ của ma trận $A$.
+            Điều kiện cần và đủ để ma trận $A$ là một ma trận xác định dương là:
+            \begin{equation*}
+                \Delta_k > 0 \thickspace \forall k = 1,\dots,n
+            \end{equation*}
+        \end{dl}
+
+        Từ định lý \ref{dl:Sylvester}, để một ma trận $A \in \mathbb{R}^{n \times n}$ là một ma trận xác định âm thì điều kiện cần và đủ là:
+
+        \begin{equation*}
+            (-1)^k \Delta_k > 0 \thickspace \forall k = 1,\dots,n
+        \end{equation*}
+
+        Định lý \ref{dl:Sylvester} chỉ giúp ta xác định một ma trận đối xứng là ma trận xác định dương hay xác định âm mà không giúp ta xác định được một ma trận là nửa xác định âm hay nửa xác định dương.
+        Liên quan đến ma trận nửa xác định dương ta có tiểu chuẩn Sylvester mở rộng.
+
+        \begin{dl}[Tiêu chuẩn Sylvester mở rộng] \label{dl:Extended-Sylvester}
+            Cho ma trận $A \in \mathbb{R}^{n \times n}$ đối xứng, 
+            đặt $A_k$ là ma trận thu được bằng cách lấy một ma trận con kích thước $k\times k$ góc trên bên trái của ma trận $A$. 
+            Hơn nữa, ta đặt $\Delta_k=\det(A_k)$ là định thức con chính cấp $k$ của ma trận $A$.
+            Điều kiện cần để ma trận $A$ là một ma trận nửa xác định dương là:
+            \begin{equation*}
+                \Delta_k \geq 0 \thickspace \forall k = 1,\dots,n
+            \end{equation*}
+        \end{dl}
+
+        Một điều cần chú ý rằng định lý \ref{dl:Extended-Sylvester} chỉ nói đến điều kiện cần để một ma trận đối xứng là một ma trận nửa xác định dương.
+        Nếu một ma trận đối xứng nửa xác định dương thì sẽ có $\Delta_k \geq 0 \thickspace \forall k = 1,\dots,n$. 
+        Nhưng nếu một ma trận đối xứng và $\Delta_k \geq 0 \thickspace \forall k = 1,\dots,n$ ta chưa thể kết luận rằng ma trận này là một ma trận nửa xác định dương.
+        Nhưng nếu ta chỉ cần chỉ ra tồn tại ít nhất một $k \in \lbrack 1, n \rbrack$ sao cho $\Delta_k < 0$ thì ta có thể kết luận rằng ma trận này là ma trận không nửa xác định dương.
+
+        Từ định lý \ref{dl:Extended-Sylvester}, nếu một ma trận đối xứng thì điều kiện cần để ma trận này nửa xác định âm là:
+
+        \begin{equation*}
+            (-1)^k \Delta_k \geq 0 \thickspace \forall k = 1,\dots,n
+        \end{equation*}
+
+        Với ma trận Hessian $\nabla^2 f(x, y)$ của bài toán, ma trận Hessian $\nabla^2 f(x, y)$ là ma trận đối xứng, ta xét các định thức con chính:
+        Ta xét định thức con chính cấp 1:
         \begin{equation*}
             \det(\begin{bmatrix} 12x^2 + 2  \end{bmatrix})>0 \thickspace \forall (x, y) \in \mathbb{R}^2
         \end{equation*}
 
+        Theo định lý \ref{dl:Extended-Sylvester}, để ma trận $\nabla^2 f(x, y)$ có cơ hội là ma trận nửa xác định âm thì $(-1)^k \Delta_k \geq 0 \thickspace \forall k = 1,\dots,n$ nhưng định thức con chính đầu tiên lớn hơn 0 $\forall (x, y) \in \mathbb{R}^2$ nên ma trận Hessian $\nabla^2 f(x, y)$ không thỏa mãn điều kiện cần để là một ma trận nửa xác định âm.
+        Vậy ma trận Hessian $\nabla^2 f(x, y)$ không là một ma trận nửa xác định âm.
+        Ta xét định thức con chính cấp 2:
         \begin{equation*}
             \det(\nabla^2 f(x,y))=\det\Bigg(\begin{bmatrix} 12x^2 + 2 & -6 \\ -6 & 6 \end{bmatrix} \Bigg)=6(12x^2 + 2) - 36 =72x^2 - 24
         \end{equation*}
 
-        \begin{itemize}
-            \item $\det\Big(\nabla^2 f(x,y)\Big) < 0$ với $x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$, $\nabla^2 f(x,y)$ là ma trận xác định âm.
-            \item $\det\Big(\nabla^2 f(x,y)\Big) > 0$ với $x \in \Big(-\infty;-\dfrac{1}{\sqrt{3}}\Big) \cup \Big(\dfrac{1}{\sqrt{3}}; +\infty\Big)$, $\nabla^2 f(x,y)$ là ma trận xác định dương.
-        \end{itemize}
+        $\det\Big(\nabla^2 f(x,y)\Big) < 0$ với $\forall x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$, 
+        ma trận Hessian $\nabla^2 f(x,y)$ không thỏa mãn điều kiện cần để là một ma trận nửa xác định dương do $\forall x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$ định thức con chính cấp 2 của $\nabla^2 f(x, y)$ nhỏ hơn 0.
+        Như vậy  ma trận Hessian $\nabla^2 f(x,y)$ không là một ma trận nửa xác định dương $\forall (x, y) \in \mathbb{R}^{2}$.
 
-        Như vậy $\nabla^2 f(x,y)$ là ma trận không xác định dấu do $\nabla^2 f(x,y) \succ 0$ hoặc $\nabla^2 f(x,y) \prec 0$ phụ thuộc vào giá trị $x$.
+
+        Ma trận Hessian $\nabla^2 f(x,y)$ vừa là một ma trận không nửa xác định dương vừa là một ma trận không nửa xác định âm nên ma trận $\nabla^2 f(x,y)$ là ma trận không xác định dấu. Hàm $f(x, y)$ không là một hàm lồi (cũng không phải là một hàm lõm).
+
+        Để tìm các cực trị địa phương của hàm $f(x, y)$, ta cần tìm tất cả các điểm dừng và đánh giá dấu của ma trận Hessian $\nabla^2 f(x,y)$ tại các điểm dừng này.
         
         Để tìm các điểm dừng, ta giải phương trình $\nabla f(x, y) = 0$
 
@@ -422,19 +470,24 @@
             \end{aligned}
         \end{equation}
 
-        Ta sẽ xét ma trận Hessian $\nabla^2 f(x,y)$ tại các điểm dừng nghiệm của phương trình $\nabla f(x, y) = 0$:
+        Ta sẽ xét ma trận Hessian $\nabla^2 f(x,y)$ tại các điểm dừng là nghiệm của phương trình $\nabla f(x, y) = 0$:
 
         \begin{itemize}
-            \item $\nabla^2 f(x=0,y=0)=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$. Ta có $\det(\begin{bmatrix}2\end{bmatrix})=2>0, \det{\Big(\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=2\times6 - (-6)\times(-6)=-24<0$. $\nabla^2 f(x=0,y=0)$ là ma trận xác định âm. 
-            Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(0,0)$, $\nabla f(x=0,y=0)=0$ và $\nabla^2 f(x=0, y=0)$ là ma trận xác định âm nên $(x,y)=(0,0)$ là một điểm cực đại địa phương ngặt.
-            \item $\nabla^2 f(x=1,y=1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
-            $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương.
+            \item $\nabla^2 f(x=0,y=0)=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$. 
+            Với vector $p_1 = \begin{bmatrix} 0 \\ 1\end{bmatrix}$, ta có $p_1^T \nabla^2 f(x=0,y=0) p_1=\begin{bmatrix} 0 & 1\end{bmatrix}\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix} \begin{bmatrix} 0 \\ 1\end{bmatrix}=6 > 0$. 
+            Vậy ma trận $\nabla^2 f(x=0,y=0)=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$ là ma trận không nửa xác định âm. 
+            Với $p_2 = \begin{bmatrix} 1 \\ 1\end{bmatrix}$, ta có $p_2^T \nabla^2 f(x=0,y=0) p_2=\begin{bmatrix} 1 & 1\end{bmatrix}\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix} \begin{bmatrix} 1 \\ 1\end{bmatrix}=-4 < 0$.
+            Vậy ma trận $\nabla^2 f(x=0,y=0)=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$ là ma trận không nửa xác định dương.
+            Vì ma trận $\nabla^2 f(x=0,y=0)=\begin{bmatrix} 2 & -6 \\ -6 & 6 \end{bmatrix}$ đồng thời không nửa xác định âm và không nửa xác định dương nên $\nabla^2 f(x=0,y=0)$ là ma trận không xác định dấu. 
+            Nên $(x, y)=(0, 0)$ không phải là một cực trị địa phương.
+            \item $\nabla^2 f(x=1,y=1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$ là một ma trận đối xứng. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
+            Theo định lý \ref{dl:Sylvester}, ma trận $\nabla^2 f(x=1,y=1)$ đối xứng và tất cả các định thức con chính đều lớn hơn 0, nên $\nabla^2 f(x=1,y=1)$ là một ma trận xác định dương.
             Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(1,1)$, $\nabla f(x=1,y=1)=0$ và $\nabla^2 f(x=1,y=1)$ là ma trận xác định dương nên $(x,y)=(1,1)$ là một cực tiểu địa phương ngặt.
-            \item $\nabla^2 f(x=-1,y=-1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
-            $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương.
+            \item $\nabla^2 f(x=-1,y=-1)=\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}$ là một ma trận đối xứng. $\det{(\begin{bmatrix}14\end{bmatrix})}=14>0, \det{\Big(\begin{bmatrix} 14 & -6 \\ -6 & 6 \end{bmatrix}\Big)}=14\times6 - (-6)\times(-6)=48>0$.
+            Theo định lý \ref{dl:Sylvester}, ma trận $\nabla^2 f(x=-1,y=-1)$ đối xứng và tất cả các định thức con chính đều lớn hơn 0, nên $\nabla^2 f(x=-1,y=-1)$ là một ma trận xác định dương.
             Vì $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^2$ nên $\nabla^2 f(x, y)$ cũng tồn tại là liên tục trong một lân cận mở của $(x,y)=(-1,-1)$, $\nabla f(x=-1,y=-1)=0$ và $\nabla^2 f(x=-1,y=-1)$ là ma trận xác định dương nên Vậy $x=y=-1$ là một cực tiểu địa phương ngặt.
         \end{itemize}
-        Vậy ta có $(x,y)=(0,0)$ là một điểm cực đại địa phương và hai điểm $(x,y)=(1, 1)$ và $(x,y)=(-1,-1)$ là các điểm cực tiểu địa phương.
+        Vậy ta có hai điểm $(x,y)=(1, 1)$ và $(x,y)=(-1,-1)$ là các điểm cực tiểu địa phương.
     \end{loigiai}
 
     \begin{baitap}
@@ -539,7 +592,7 @@
 
             Ta nhận thấy $\nabla^2 f(x)$ tồn tại và liên tục với mọi $(x_1, x_2) \in \mathbb{R}^{2}$
 
-            Ta xét:
+            Ma trận $\nabla^2 f(x)$ là ma trận đối xứng. Ta xét định thức con chính cấp 1 của $\nabla^2 f(x)$:
 
             \begin{equation*}
                 \det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})=-400 x_2 + 1200x_1^2 + 2
@@ -547,13 +600,12 @@
 
             Dấu của định thức này phụ thuộc vào $x_1, x_2$.
             \begin{itemize}
-                \item Nếu $x_2 > \dfrac{1200x_1^2 + 2}{400}$ thì định thức $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})<0$
-                \item Nếu $x_2 < \dfrac{1200x_1^2 + 2}{400}$ thì $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})>0$
+                \item Nếu $x_2 > \dfrac{1200x_1^2 + 2}{400}$ thì định thức $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})<0$. Theo định lý \ref{dl:Extended-Sylvester}, ma trận $\nabla^2 f(x)$ không đạt điều kiện cần để là một ma trận nửa xác định dương. Vì vậy $\nabla^2 f(x)$ không là một ma trận nửa xác định dương $\forall (x_1, x_2) \in \mathbb{R}^2$.
+                \item Nếu $x_2 < \dfrac{1200x_1^2 + 2}{400}$ thì $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})>0$. Theo định lý \ref{dl:Extended-Sylvester}, ma trận $\nabla^2 f(x)$ không đạt điều kiện cần để là một ma trận nửa xác định âm. Vì vậy $\nabla^2 f(x)$ không là một ma trận nửa xác định âm $\forall (x_1, x_2) \in \mathbb{R}^2$.
             \end{itemize}
-            Do định thức con chính đầu tiên lớn hơn 0 hay nhỏ hơn 0 phụ thuộc vào $x_1, x_2$ nên ta không cần xét thêm các định thức con chính tiếp theo. 
-            Ma trận Hessian $\nabla^2 f(x)$ là ma trận không xác định dấu.
+            Ma trận Hessian $\nabla^2 f(x)$ vừa là một ma trận không nửa xác định dương và là một ma trận không nửa xác định âm nên $\nabla^2 f(x)$ là ma trận không xác định dấu.
 
-            $\nabla^2 f(x)$ là ma trận không xác định dấu nên $f(x)$ không là hàm lồi
+            $\nabla^2 f(x)$ là ma trận không xác định dấu nên $f(x)$ không là hàm lồi.
 
             \item Hãy tìm tất cả các điểm cực tiểu địa phương của $f$. Hàm $f$ có điểm cực tiểu toàn cục không? Nếu có hãy chỉ ra điểm đó là điểm nào?
             
@@ -577,7 +629,7 @@
                 \nabla^2 f(x_1=1, x_2=1)=\begin{bmatrix} 802 & -400 \\ -400 & 200 \end{bmatrix}
             \end{equation*}
 
-            Ta xét:
+            Ta có ma trận $\nabla^2 f(x_1=1, x_2=1)$ là ma trận đối xứng. Ta xét các định thức con chính cấp 1 và cấp 2 của ma trận $\nabla^2 f(x_1=1, x_2=1)$:
 
             \begin{equation*}
                 \begin{aligned}
@@ -586,6 +638,8 @@
                     \Rightarrow&\nabla^2 f(x_1=1, x_2=1) \succ 0
                 \end{aligned}
             \end{equation*}
+
+            Theo định lý \ref{dl:Sylvester}, ma trận $\nabla^2 f(x_1=1, x_2=1)$ là ma trận xác định dương do $\nabla^2 f(x_1=1, x_2=1)$ đối xứng và tất cả các định thức con chính (cấp 1 và cấp 2) đều lơn 0.
 
             Vì $\nabla^2 f(x)$ tồn tại và liên tục với mọi $(x_1, x_2) \in \mathbb{R}^{2}$ nên $\nabla^2 f(x, y)$ cũng tồn tại và liên tục trong một lân cận mở của $(x_1, x_2)=(1,1)$, $\nabla f(x_1=1, x_2=1)=0$ và $\nabla^2 f(x_1=1, x_2=1)$ là ma trận xác định dương nên $(x_1, x_2)=(1, 1)$ là một cực tiểu địa phương ngặt. Ta có $f(x_1=1, x_2=1)=0$. Mặt khác:
 
