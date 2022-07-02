@@ -359,12 +359,12 @@
             Ta xét ma trận Hessian $\nabla^2 f(x)$:
 
             \begin{equation*}
-                \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T p=\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k} \thickspace \forall x \in \mathbb{R}^{k}
+                \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T p=\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k} \thickspace \forall x_i \in \mathbb{R}^{k}
             \end{equation*}
             \begin{equation*}
                 \begin{aligned}
                     \Rightarrow p^T \nabla^2 f(x)p&=\dfrac{1}{n}\sum_{i=1}^n \dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}p^Tx_i x_i^T\\
-                    &=\dfrac{1}{n}\sum_{i=1}^n \Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k} \thickspace \forall x \in \mathbb{R}^{k}
+                    &=\dfrac{1}{n}\sum_{i=1}^n \Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)^T\Bigg(\sqrt{\dfrac{e^{x_i^Tw}}{(1 + e^{x_i^T w})^2}} x_i^Tp\Bigg)\geq 0 \thickspace \forall p \in \mathbb{R}^{k} \thickspace \forall x_i \in \mathbb{R}^{k}
                 \end{aligned}
             \end{equation*}
 
@@ -392,7 +392,7 @@
 
         Ta nhận thấy $\nabla^2 f(x, y)$ tồn tại và liên tục với mọi $(x, y) \in \mathbb{R}^{2}$
 
-        Để xét dấu của ma trận Hessian $\nabla^2 f(x, y)$, ta sẽ sử dụng một vài định lý và tiêu chuẩn.
+        Để xét dấu của ma trận Hessian $\nabla^2 f(x, y)$, ta sẽ sử dụng một vài tiêu chuẩn.
 
         \begin{dl}[Tiêu chuẩn Sylvester] \label{dl:Sylvester}
             Cho ma trận $A \in \mathbb{R}^{n \times n}$ đối xứng, 
@@ -423,7 +423,7 @@
             \end{equation*}
         \end{dl}
 
-        Một điều cần chú ý rằng định lý \ref{dl:Extended-Sylvester} chỉ nói đến điều kiện cần để một ma trận đối xứng là một ma trận nửa xác định dương.
+        Một điều ta cần chú ý rằng định lý \ref{dl:Extended-Sylvester} chỉ nói đến điều kiện cần để một ma trận đối xứng là một ma trận nửa xác định dương.
         Nếu một ma trận đối xứng nửa xác định dương thì sẽ có $\Delta_k \geq 0 \thickspace \forall k = 1,\dots,n$. 
         Nhưng nếu một ma trận đối xứng và $\Delta_k \geq 0 \thickspace \forall k = 1,\dots,n$ ta chưa thể kết luận rằng ma trận này là một ma trận nửa xác định dương.
         Nhưng nếu ta chỉ cần chỉ ra tồn tại ít nhất một $k \in \lbrack 1, n \rbrack$ sao cho $\Delta_k < 0$ thì ta có thể kết luận rằng ma trận này là ma trận không nửa xác định dương.
@@ -449,7 +449,7 @@
 
         $\det\Big(\nabla^2 f(x,y)\Big) < 0$ với $\forall x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$, 
         ma trận Hessian $\nabla^2 f(x,y)$ không thỏa mãn điều kiện cần để là một ma trận nửa xác định dương do $\forall x \in \Big(-\dfrac{1}{\sqrt{3}}; \dfrac{1}{\sqrt{3}}\Big)$ định thức con chính cấp 2 của $\nabla^2 f(x, y)$ nhỏ hơn 0.
-        Như vậy  ma trận Hessian $\nabla^2 f(x,y)$ không là một ma trận nửa xác định dương $\forall (x, y) \in \mathbb{R}^{2}$.
+        Như vậy ma trận Hessian $\nabla^2 f(x,y)$ không là một ma trận nửa xác định dương.
 
 
         Ma trận Hessian $\nabla^2 f(x,y)$ vừa là một ma trận không nửa xác định dương vừa là một ma trận không nửa xác định âm nên ma trận $\nabla^2 f(x,y)$ là ma trận không xác định dấu. Hàm $f(x, y)$ không là một hàm lồi (cũng không phải là một hàm lõm).
@@ -600,8 +600,8 @@
 
             Dấu của định thức này phụ thuộc vào $x_1, x_2$.
             \begin{itemize}
-                \item Nếu $x_2 > \dfrac{1200x_1^2 + 2}{400}$ thì định thức $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})<0$. Theo định lý \ref{dl:Extended-Sylvester}, ma trận $\nabla^2 f(x)$ không đạt điều kiện cần để là một ma trận nửa xác định dương. Vì vậy $\nabla^2 f(x)$ không là một ma trận nửa xác định dương $\forall (x_1, x_2) \in \mathbb{R}^2$.
-                \item Nếu $x_2 < \dfrac{1200x_1^2 + 2}{400}$ thì $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})>0$. Theo định lý \ref{dl:Extended-Sylvester}, ma trận $\nabla^2 f(x)$ không đạt điều kiện cần để là một ma trận nửa xác định âm. Vì vậy $\nabla^2 f(x)$ không là một ma trận nửa xác định âm $\forall (x_1, x_2) \in \mathbb{R}^2$.
+                \item Nếu $x_2 > \dfrac{1200x_1^2 + 2}{400}$ thì định thức $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})<0$. Theo định lý \ref{dl:Extended-Sylvester}, ma trận $\nabla^2 f(x)$ không đạt điều kiện cần để là một ma trận nửa xác định dương. Vì vậy $\nabla^2 f(x)$ không là một ma trận nửa xác định dương.
+                \item Nếu $x_2 < \dfrac{1200x_1^2 + 2}{400}$ thì $\det (\begin{bmatrix} -400 x_2 + 1200x_1^2 + 2 \end{bmatrix})>0$. Theo định lý \ref{dl:Extended-Sylvester}, ma trận $\nabla^2 f(x)$ không đạt điều kiện cần để là một ma trận nửa xác định âm. Vì vậy $\nabla^2 f(x)$ không là một ma trận nửa xác định âm.
             \end{itemize}
             Ma trận Hessian $\nabla^2 f(x)$ vừa là một ma trận không nửa xác định dương và là một ma trận không nửa xác định âm nên $\nabla^2 f(x)$ là ma trận không xác định dấu.
 
@@ -651,7 +651,7 @@
             \end{equation*}
             Vì vậy $(x_1, x_2)=(1, 1)$ cũng là một cực tiểu toàn cục của hàm $f(x)$.
 
-            Kết luận: Hàm $f(x)$ chỉ có một cực tiểu địa phương $(x_1, x_2)=(1,1)$ và cũng chính là cực tiểu toàn cục của hàm $f$.
+            Kết luận: Hàm $f(x)$ chỉ có một cực tiểu địa phương $(x_1, x_2)=(1,1)$ và cũng chính là cực tiểu toàn cục của hàm $f(x)$.
         \end{enumerate}
     \end{loigiai}
 
